@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.3s !important;
+}
+
+body {
+  background-color: #fff;
+  font-family: "Roboto", sans-serif;
+}
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  margin: 10px auto;
+}
+
+header {
+  width: 95%;
+  padding: 0px 10px 20px 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.gift-title {
+  order: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &_logo {
+    background-image: url("../assets/images/gifted_logo.gif");
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+  }
+  h3 {
+    padding: 25px 0px 0px 10px;
+  }
+}
+
+.gift-search {
+  order: 2;
+  padding-top: 40px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(223, 223, 223, 0.87);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.05);
+  width: 600px;
+  height: 45px;
+  border-radius: 60px;
+  align-items: center;
+  justify-content: center;
+  input {
+    background-color: rgba(223, 223, 223, 0);
+    outline: none;
+    width: 88%;
+    border: none;
+  }
+  button {
+    border: none;
+    outline: none;
+  }
+}
+
+.gift-follow {
+  order: 3;
+  padding-top: 40px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  span {
+    padding: 25px 0px 0px 10px;
+  }
+}
+
+.gif-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.gif-card {
+  margin: 5px;
+}
