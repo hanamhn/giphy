@@ -1,20 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 import FA from "react-fontawesome";
 
-const Search = ({
-  search,
-  setSearch,
-  fetchData,
-  setTitle,
-  setOffset,
-  setLimit,
-}) => {
+const Search = ({ search, setSearch, fetchData, setTitle, setShowMore }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setTitle(search);
     fetchData(search);
     setSearch("");
+    setShowMore(false);
   };
   return (
     <div>

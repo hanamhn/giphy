@@ -1,19 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
 import Search from "./Search";
-import Add from "./Add";
 
 const Giphy = (props) => {
   const [data, setData] = React.useState([]);
   const [title, setTitle] = React.useState("Gif");
   const [loader, setLoader] = React.useState(true);
-  const [offset, setOffset] = React.useState(0);
-  const [limit, setLimit] = React.useState(8);
+  const [showMore, setShowMore] = React.useState(false);
   const [search, setSearch] = React.useState("");
 
   const fetchData = async (title) => {
-    let URL = `http://api.giphy.com/v1/gifs/search?q=${title}&api_key=${process.env.REACT_APP_API_KEY}&limit=${limit}&offset=${offset}`;
+    let URL = `http://api.giphy.com/v1/gifs/search?q=${title}&api_key=${process.env.REACT_APP_API_KEY}`;
     try {
       let fetchGif = await axios(URL);
       let fetchRes = await fetchGif;
@@ -28,7 +25,9 @@ const Giphy = (props) => {
   };
   React.useEffect(() => {
     fetchData(title);
-  }, [offset]);
+  }, [title]);
+
+  const numberOfItems = showMore ? data.length : 8;
 
   const content = () => {
     // eslint-disable-next-line default-case
@@ -36,7 +35,7 @@ const Giphy = (props) => {
       case loader:
         return <div>loading...</div>;
       case data.length > 0:
-        return data.map((g) => {
+        return data.slice(0, numberOfItems).map((g) => {
           return (
             <div className="gif-card" key={data.id}>
               <img src={g.images.fixed_width.url} alt="gif" className="image" />
@@ -45,7 +44,7 @@ const Giphy = (props) => {
         });
     }
   };
-  console.log(limit);
+  console.log(numberOfItems);
   return (
     <div>
       <header>
@@ -59,6 +58,7 @@ const Giphy = (props) => {
             setSearch={setSearch}
             fetchData={fetchData}
             setTitle={setTitle}
+            setShowMore={setShowMore}
           />
         </div>
         <div className="gift-follow">
@@ -67,18 +67,9 @@ const Giphy = (props) => {
       </header>
       <strong>Search: </strong> {title}
       <div className="gif-add">
-        {/* <Add
-          setOffset={setOffset}
-          limit={limit}
-          offset={offset}
-          setLoader={setLoader}
-          setLimit={setLimit}
-        /> */}
         <button
           onClick={() => {
-            // setLoader(true);
-            // setOffset(offset + limit);
-            // setLimit(22);
+            setShowMore(true);
           }}
         >
           Add
@@ -88,7 +79,5 @@ const Giphy = (props) => {
     </div>
   );
 };
-
-Giphy.propTypes = {};
 
 export default Giphy;
